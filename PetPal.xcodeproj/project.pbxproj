@@ -19,6 +19,7 @@
 		AA110008AABBCCDD00203A25 /* AddPetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA110007AABBCCDD00203A25 /* AddPetView.swift */; };
 		AA11000AAABBCCDD00203A25 /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA110009AABBCCDD00203A25 /* AddEventView.swift */; };
 		AA110012AABBCCDD00203A25 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA110011AABBCCDD00203A25 /* NotificationManager.swift */; };
+		AA110014AABBCCDD00203A25 /* EventsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA110013AABBCCDD00203A25 /* EventsTab.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		AA110007AABBCCDD00203A25 /* AddPetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPetView.swift; sourceTree = "<group>"; };
 		AA110009AABBCCDD00203A25 /* AddEventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
 		AA110011AABBCCDD00203A25 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		AA110013AABBCCDD00203A25 /* EventsTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsTab.swift; sourceTree = "<group>"; };
 		C3F62D462F844B4600203A25 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C3F62D472F844B4600203A25 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,6 +79,7 @@
 				AA110007AABBCCDD00203A25 /* AddPetView.swift */,
 				AA110009AABBCCDD00203A25 /* AddEventView.swift */,
 				AA110011AABBCCDD00203A25 /* NotificationManager.swift */,
+				AA110013AABBCCDD00203A25 /* EventsTab.swift */,
 				C3F62D382F844AD900203A25 /* Item.swift */,
 				C3F62D3A2F844ADC00203A25 /* Assets.xcassets */,
 				C3F62D3C2F844ADC00203A25 /* PetPal.entitlements */,
@@ -173,6 +176,7 @@
 				AA110008AABBCCDD00203A25 /* AddPetView.swift in Sources */,
 				AA11000AAABBCCDD00203A25 /* AddEventView.swift in Sources */,
 				AA110012AABBCCDD00203A25 /* NotificationManager.swift in Sources */,
+				AA110014AABBCCDD00203A25 /* EventsTab.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
