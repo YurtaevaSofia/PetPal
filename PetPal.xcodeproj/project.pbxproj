@@ -7,21 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C3F62D352F844AD900203A25 /* PetPalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F62D342F844AD900203A25 /* PetPalApp.swift */; };
-		C3F62D372F844AD900203A25 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F62D362F844AD900203A25 /* ContentView.swift */; };
 		C3F62D392F844AD900203A25 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F62D382F844AD900203A25 /* Item.swift */; };
 		C3F62D3B2F844ADC00203A25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3F62D3A2F844ADC00203A25 /* Assets.xcassets */; };
 		C3F62D3F2F844ADC00203A25 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3F62D3E2F844ADC00203A25 /* Preview Assets.xcassets */; };
+		C3F62D482F844B4600203A25 /* PetPalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F62D452F844B4600203A25 /* PetPalApp.swift */; };
+		C3F62D492F844B4600203A25 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F62D462F844B4600203A25 /* HomeView.swift */; };
+		C3F62D4A2F844B4600203A25 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F62D472F844B4600203A25 /* Models.swift */; };
+		AA110002AABBCCDD00203A25 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA110001AABBCCDD00203A25 /* MainTabView.swift */; };
+		AA110004AABBCCDD00203A25 /* PetsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA110003AABBCCDD00203A25 /* PetsTab.swift */; };
+		AA110006AABBCCDD00203A25 /* PetProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA110005AABBCCDD00203A25 /* PetProfileView.swift */; };
+		AA110008AABBCCDD00203A25 /* AddPetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA110007AABBCCDD00203A25 /* AddPetView.swift */; };
+		AA11000AAABBCCDD00203A25 /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA110009AABBCCDD00203A25 /* AddEventView.swift */; };
+		AA110012AABBCCDD00203A25 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA110011AABBCCDD00203A25 /* NotificationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C3F62D312F844AD900203A25 /* PetPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C3F62D342F844AD900203A25 /* PetPalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetPalApp.swift; sourceTree = "<group>"; };
-		C3F62D362F844AD900203A25 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C3F62D382F844AD900203A25 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		C3F62D3A2F844ADC00203A25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C3F62D3C2F844ADC00203A25 /* PetPal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PetPal.entitlements; sourceTree = "<group>"; };
 		C3F62D3E2F844ADC00203A25 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C3F62D452F844B4600203A25 /* PetPalApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetPalApp.swift; sourceTree = "<group>"; };
+		AA110001AABBCCDD00203A25 /* MainTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		AA110003AABBCCDD00203A25 /* PetsTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetsTab.swift; sourceTree = "<group>"; };
+		AA110005AABBCCDD00203A25 /* PetProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetProfileView.swift; sourceTree = "<group>"; };
+		AA110007AABBCCDD00203A25 /* AddPetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPetView.swift; sourceTree = "<group>"; };
+		AA110009AABBCCDD00203A25 /* AddEventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
+		AA110011AABBCCDD00203A25 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		C3F62D462F844B4600203A25 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		C3F62D472F844B4600203A25 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,8 +68,15 @@
 		C3F62D332F844AD900203A25 /* PetPal */ = {
 			isa = PBXGroup;
 			children = (
-				C3F62D342F844AD900203A25 /* PetPalApp.swift */,
-				C3F62D362F844AD900203A25 /* ContentView.swift */,
+				C3F62D462F844B4600203A25 /* HomeView.swift */,
+				C3F62D472F844B4600203A25 /* Models.swift */,
+				C3F62D452F844B4600203A25 /* PetPalApp.swift */,
+				AA110001AABBCCDD00203A25 /* MainTabView.swift */,
+				AA110003AABBCCDD00203A25 /* PetsTab.swift */,
+				AA110005AABBCCDD00203A25 /* PetProfileView.swift */,
+				AA110007AABBCCDD00203A25 /* AddPetView.swift */,
+				AA110009AABBCCDD00203A25 /* AddEventView.swift */,
+				AA110011AABBCCDD00203A25 /* NotificationManager.swift */,
 				C3F62D382F844AD900203A25 /* Item.swift */,
 				C3F62D3A2F844ADC00203A25 /* Assets.xcassets */,
 				C3F62D3C2F844ADC00203A25 /* PetPal.entitlements */,
@@ -142,9 +163,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3F62D372F844AD900203A25 /* ContentView.swift in Sources */,
+				C3F62D482F844B4600203A25 /* PetPalApp.swift in Sources */,
 				C3F62D392F844AD900203A25 /* Item.swift in Sources */,
-				C3F62D352F844AD900203A25 /* PetPalApp.swift in Sources */,
+				C3F62D4A2F844B4600203A25 /* Models.swift in Sources */,
+				C3F62D492F844B4600203A25 /* HomeView.swift in Sources */,
+				AA110002AABBCCDD00203A25 /* MainTabView.swift in Sources */,
+				AA110004AABBCCDD00203A25 /* PetsTab.swift in Sources */,
+				AA110006AABBCCDD00203A25 /* PetProfileView.swift in Sources */,
+				AA110008AABBCCDD00203A25 /* AddPetView.swift in Sources */,
+				AA11000AAABBCCDD00203A25 /* AddEventView.swift in Sources */,
+				AA110012AABBCCDD00203A25 /* NotificationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,10 +322,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.test.PetPal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -330,10 +359,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.test.PetPal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

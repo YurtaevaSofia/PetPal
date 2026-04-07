@@ -1,10 +1,3 @@
-//
-//  PetPalApp.swift
-//  PetPal
-//
-//  Created by Sofia on 06.04.2026.
-//
-
 import SwiftUI
 import SwiftData
 
@@ -12,7 +5,8 @@ import SwiftData
 struct PetPalApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            Pet.self,
+            CareEvent.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -25,7 +19,8 @@ struct PetPalApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainTabView()
+                .onAppear { NotificationManager.requestPermission() }
         }
         .modelContainer(sharedModelContainer)
     }
