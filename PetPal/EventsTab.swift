@@ -42,7 +42,10 @@ struct EventsTab: View {
                     List {
                         ForEach(allUpcoming, id: \.event.id) { pair in
                             Button { editingEvent = pair.event } label: {
-                                EventRowWithPet(event: pair.event, pet: pair.pet)
+                                EventRowWithPet(event: pair.event, pet: pair.pet, onComplete: {
+                                    NotificationManager.cancel(id: pair.event.notificationID)
+                                    pair.event.isCompleted = true
+                                })
                             }
                             .buttonStyle(.plain)
                             // Swipe left → mark complete
@@ -116,6 +119,7 @@ struct EventsTab: View {
 struct EventRowWithPet: View {
     let event: CareEvent
     let pet: Pet
+    var onComplete: (() -> Void)? = nil
 
     private var iconName: String {
         switch event.eventType {
@@ -128,15 +132,27 @@ struct EventRowWithPet: View {
         }
     }
 
+    private var isOverdue: Bool { event.urgency == .overdue }
+
     var body: some View {
         HStack(spacing: 10) {
+            // Completion checkbox
+            Button {
+                onComplete?()
+            } label: {
+                Image(systemName: event.isCompleted ? "checkmark.circle.fill" : "circle")
+                    .font(.system(size: 20))
+                    .foregroundColor(event.isCompleted ? .petBlue : (isOverdue ? .orange : .petTextMuted))
+            }
+            .buttonStyle(.plain)
+
             ZStack {
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(Color.petIconBG)
+                    .fill(isOverdue ? Color.orange.opacity(0.12) : Color.petIconBG)
                     .frame(width: 34, height: 34)
                 Image(systemName: iconName)
                     .font(.system(size: 14))
-                    .foregroundColor(.petBlue)
+                    .foregroundColor(isOverdue ? .orange : .petBlue)
             }
 
             VStack(alignment: .leading, spacing: 2) {
@@ -153,22 +169,26 @@ struct EventRowWithPet: View {
             HStack(spacing: 6) {
                 Text(event.dateLabel)
                     .font(.caption)
-                    .foregroundColor(.petTextMuted)
+                    .foregroundColor(isOverdue ? .orange : .petTextMuted)
 
                 if event.urgency == .soon || event.urgency == .overdue {
                     Text(event.urgency == .overdue ? "Overdue" : "Soon")
                         .font(.caption2.weight(.medium))
-                        .foregroundColor(.petBlue)
+                        .foregroundColor(isOverdue ? .orange : .petBlue)
                         .padding(.horizontal, 6)
                         .padding(.vertical, 2)
-                        .background(Color.petIconBG)
+                        .background(isOverdue ? Color.orange.opacity(0.12) : Color.petIconBG)
                         .clipShape(Capsule())
                 }
             }
         }
         .padding(12)
-        .background(Color.petCard)
+        .background(isOverdue ? Color(red: 1.0, green: 0.96, blue: 0.92) : Color.petCard)
         .cornerRadius(12)
-        .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(Color.petBorder, lineWidth: 0.5))
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .strokeBorder(isOverdue ? Color.orange.opacity(0.5) : Color.petBorder,
+                              lineWidth: isOverdue ? 1.0 : 0.5)
+        )
     }
 }

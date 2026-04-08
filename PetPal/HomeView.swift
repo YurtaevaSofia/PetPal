@@ -75,7 +75,10 @@ struct HomeView: View {
 
                                     VStack(spacing: 8) {
                                         ForEach(upcomingEvents) { event in
-                                            EventRow(event: event)
+                                            EventRow(event: event, onComplete: {
+                                                NotificationManager.cancel(id: event.notificationID)
+                                                event.isCompleted = true
+                                            })
                                         }
                                     }
                                     .padding(.horizontal)
@@ -167,10 +170,21 @@ struct PetHeroCard: View {
         }
         .padding(16)
         .background(
-            LinearGradient(colors: [.petBlue, .petBlueDark],
-                           startPoint: .topLeading, endPoint: .bottomTrailing)
+            Group {
+                if let data = pet.photoData, let uiImage = UIImage(data: data) {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .scaledToFill()
+                        .blur(radius: 24, opaque: true)
+                        .overlay(Color.black.opacity(0.35))
+                } else {
+                    LinearGradient(colors: [.petBlue, .petBlueDark],
+                                   startPoint: .topLeading, endPoint: .bottomTrailing)
+                }
+            }
         )
         .cornerRadius(16)
+        .clipped()
     }
 }
 
@@ -178,6 +192,7 @@ struct PetHeroCard: View {
 
 struct EventRow: View {
     let event: CareEvent
+    var onComplete: (() -> Void)? = nil
 
     private var iconName: String {
         switch event.eventType {
@@ -189,17 +204,29 @@ struct EventRow: View {
         }
     }
 
+    private var isOverdue: Bool { event.urgency == .overdue }
+
     var body: some View {
         HStack(spacing: 10) {
+            // Completion checkbox
+            Button {
+                onComplete?()
+            } label: {
+                Image(systemName: event.isCompleted ? "checkmark.circle.fill" : "circle")
+                    .font(.system(size: 20))
+                    .foregroundColor(event.isCompleted ? .petBlue : (isOverdue ? .orange : .petTextMuted))
+            }
+            .buttonStyle(.plain)
+
             // Icon box
             ZStack {
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(Color.petIconBG)
+                    .fill(isOverdue ? Color.orange.opacity(0.12) : Color.petIconBG)
                     .frame(width: 34, height: 34)
 
                 Image(systemName: iconName)
                     .font(.system(size: 14))
-                    .foregroundColor(.petBlue)
+                    .foregroundColor(isOverdue ? .orange : .petBlue)
             }
 
             Text(event.name)
@@ -211,23 +238,27 @@ struct EventRow: View {
             HStack(spacing: 6) {
                 Text(event.dateLabel)
                     .font(.caption)
-                    .foregroundColor(.petTextMuted)
+                    .foregroundColor(isOverdue ? .orange : .petTextMuted)
 
                 if event.urgency == .soon || event.urgency == .overdue {
                     Text(event.urgency == .overdue ? "Overdue" : "Soon")
                         .font(.caption2.weight(.medium))
-                        .foregroundColor(.petBlue)
+                        .foregroundColor(isOverdue ? .orange : .petBlue)
                         .padding(.horizontal, 6)
                         .padding(.vertical, 2)
-                        .background(Color.petIconBG)
+                        .background(isOverdue ? Color.orange.opacity(0.12) : Color.petIconBG)
                         .clipShape(Capsule())
                 }
             }
         }
         .padding(12)
-        .background(Color.petCard)
+        .background(isOverdue ? Color(red: 1.0, green: 0.96, blue: 0.92) : Color.petCard)
         .cornerRadius(12)
-        .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(Color.petBorder, lineWidth: 0.5))
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .strokeBorder(isOverdue ? Color.orange.opacity(0.5) : Color.petBorder,
+                              lineWidth: isOverdue ? 1.0 : 0.5)
+        )
     }
 }
 

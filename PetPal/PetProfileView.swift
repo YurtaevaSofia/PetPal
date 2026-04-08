@@ -65,7 +65,10 @@ struct PetProfileView: View {
                                 ForEach(upcomingEvents) { event in
                                     // Tap to edit
                                     Button { editingEvent = event } label: {
-                                        EventRow(event: event)
+                                        EventRow(event: event, onComplete: {
+                                            NotificationManager.cancel(id: event.notificationID)
+                                            event.isCompleted = true
+                                        })
                                     }
                                     .buttonStyle(.plain)
                                     .contextMenu {
@@ -187,10 +190,21 @@ struct ProfileHeaderCard: View {
         }
         .padding(18)
         .background(
-            LinearGradient(colors: [.petBlue, .petBlueDark],
-                           startPoint: .topLeading, endPoint: .bottomTrailing)
+            Group {
+                if let data = pet.photoData, let uiImage = UIImage(data: data) {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .scaledToFill()
+                        .blur(radius: 24, opaque: true)
+                        .overlay(Color.black.opacity(0.35))
+                } else {
+                    LinearGradient(colors: [.petBlue, .petBlueDark],
+                                   startPoint: .topLeading, endPoint: .bottomTrailing)
+                }
+            }
         )
         .cornerRadius(18)
+        .clipped()
     }
 }
 
