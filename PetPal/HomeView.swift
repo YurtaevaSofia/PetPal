@@ -18,16 +18,15 @@ extension Color {
 
 struct HomeView: View {
 
-    // @Query fetches all pets from the phone's database automatically
     @Query private var pets: [Pet]
-
-    // Environment gives us access to the database context
     @Environment(\.modelContext) private var modelContext
+    @State private var selectedPetIndex: Int = 0
 
-    // The first pet, or nil if none added yet
-    private var currentPet: Pet? { pets.first }
+    private var currentPet: Pet? {
+        guard !pets.isEmpty, selectedPetIndex < pets.count else { return nil }
+        return pets[selectedPetIndex]
+    }
 
-    // Only show upcoming (not completed) events, sorted by date
     private var upcomingEvents: [CareEvent] {
         guard let pet = currentPet else { return [] }
         return pet.careEvents
@@ -42,8 +41,7 @@ struct HomeView: View {
             ZStack {
                 Color.petBG.ignoresSafeArea()
 
-                if let pet = currentPet {
-                    // ── Main content when we have a pet ──────────────
+                if !pets.isEmpty {
                     ScrollView {
                         VStack(alignment: .leading, spacing: 20) {
 
@@ -53,16 +51,23 @@ struct HomeView: View {
                                     .font(.title2.weight(.medium))
                                     .foregroundColor(.petTextMain)
 
-                                Text("Here's what's ahead for \(pet.name)")
+                                Text("Here's what's ahead for \(currentPet?.name ?? "")")
                                     .font(.subheadline)
                                     .foregroundColor(.petTextMuted)
                             }
                             .padding(.horizontal)
                             .padding(.top, 8)
 
-                            // Pet hero card
-                            PetHeroCard(pet: pet)
-                                .padding(.horizontal)
+                            // Swipeable pet cards
+                            TabView(selection: $selectedPetIndex) {
+                                ForEach(Array(pets.enumerated()), id: \.offset) { index, pet in
+                                    PetHeroCard(pet: pet)
+                                        .padding(.horizontal)
+                                        .tag(index)
+                                }
+                            }
+                            .tabViewStyle(.page(indexDisplayMode: pets.count > 1 ? .always : .never))
+                            .frame(height: 110)
 
                             // Upcoming care events
                             if !upcomingEvents.isEmpty {
@@ -89,8 +94,10 @@ struct HomeView: View {
                             }
 
                             // Age-based tip
-                            TipCard(pet: pet)
-                                .padding(.horizontal)
+                            if let pet = currentPet {
+                                TipCard(pet: pet)
+                                    .padding(.horizontal)
+                            }
 
                             Spacer(minLength: 20)
                         }
@@ -98,14 +105,12 @@ struct HomeView: View {
                     }
 
                 } else {
-                    // ── Empty state: no pets added yet ───────────────
                     NoPetView()
                 }
             }
             .toolbar(.hidden, for: .navigationBar)
         }
         .onAppear {
-            // Insert sample data on first launch so the app isn't empty
             SampleData.insert(into: modelContext)
         }
     }

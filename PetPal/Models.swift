@@ -17,7 +17,7 @@ class Pet {
     var photoData: Data?           // stores the pet photo as raw bytes
 
     // One pet can have many care events
-    @Relationship(deleteRule: .cascade)
+    @Relationship(deleteRule: .cascade, inverse: \CareEvent.pet)
     var careEvents: [CareEvent] = []
 
     init(
@@ -162,13 +162,13 @@ struct SampleData {
                       dueDate: inSixteenDays, repeatInterval: .every6months),
         ]
 
+        context.insert(buddy)
+
         for event in events {
             event.pet = buddy
-            buddy.careEvents.append(event)
             context.insert(event)
         }
 
-        context.insert(buddy)
         try? context.save()
     }
 }

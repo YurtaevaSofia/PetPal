@@ -37,7 +37,10 @@ struct AddEventView: View {
     /// Edit an existing event (pre-populated). Pet is derived from the event.
     init(existingEvent: CareEvent) {
         self.existingEvent = existingEvent
-        self.pet = existingEvent.pet! // always set in this app
+        guard let linkedPet = existingEvent.pet else {
+            fatalError("CareEvent has no linked pet — data integrity violation")
+        }
+        self.pet = linkedPet
         _name = State(initialValue: existingEvent.name)
         _eventType = State(initialValue: existingEvent.eventType)
         _notes = State(initialValue: existingEvent.notes)

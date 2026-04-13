@@ -13,7 +13,14 @@ struct PetPalApp: App {
         do {
             return try ModelContainer(for: schema, configurations: [modelConfiguration])
         } catch {
-            fatalError("Could not create ModelContainer: \(error)")
+            // Schema changed between builds — delete the old store and start fresh.
+            let storeURL = modelConfiguration.url
+            do {
+                try FileManager.default.removeItem(at: storeURL)
+                return try ModelContainer(for: schema, configurations: [modelConfiguration])
+            } catch {
+                fatalError("Could not create ModelContainer: \(error)")
+            }
         }
     }()
 
